@@ -456,7 +456,9 @@ ACCOUNT NUMBER: 564472639518</textarea>
       <section class="receipt-sheet" id="receiptSheet">
         <div class="receipt-top">
           <div class="branding">
-            <div class="logo-box"><img id="previewLogo" alt="Company logo" /></div>
+            <div class="logo-box">
+              <img id="previewLogo" alt="Company logo" src="HEED_DEV-logo.png" />
+            </div>
             <div class="company-name" id="previewCompanyName">HEED DEVELOPMENT THERAPY</div>
             <div class="company-address" id="previewCompanyAddress">JALAN 1/48A,
 BANDAR BARU SENTUL,
@@ -659,7 +661,10 @@ ACCOUNT NUMBER: 564472639518</p>
       document.getElementById('previewTaxLabel').textContent = taxRate.toFixed(0);
 
       const logo = document.getElementById('previewLogo');
-      logo.src = logoUrl || EMBEDDED_LOGO;
+      logo.src = document.getElementById('logoUrl').value.trim() || "HEED_DEV-logo.png";
+      logo.onerror = function () {
+        this.style.display = "none";
+      };
 
       const tbody = document.getElementById('previewItems');
       tbody.innerHTML = '';
