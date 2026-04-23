@@ -1,0 +1,20 @@
+{
+  "name": "HEED Development Therapy Receipt Generator",
+  "short_name": "HEED Receipt",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff",
+  "icons": [
+    {
+      "src": "HEED_DEV-logo.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "HEED_DEV-logo.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
