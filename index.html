@@ -3,7 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Personal Receipt Generator</title>
+  <title>HEED Receipt Generator</title>
+  <meta name="theme-color" content="#ffffff" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-title" content="HEED Receipt" />
+  <link rel="icon" type="image/png" href="HEED_DEV-logo.png" />
+  <link rel="apple-touch-icon" href="HEED_DEV-logo.png" />
+  <link rel="manifest" href="manifest.webmanifest" />
   <style>
     :root {
       --bg: #f3f5f9;
@@ -11,15 +17,15 @@
       --line: #d9dfeb;
       --text: #14213d;
       --muted: #667085;
-      --primary: #2f65d9;
-      --soft: #eef3ff;
-      --danger: #f9e7e7;
+      --soft: #eef2f7;
+      --danger: #fff1f1;
+      --danger-text: #d22;
       --shadow: 0 14px 40px rgba(18, 31, 58, 0.08);
-      --radius: 22px;
     }
 
     * { box-sizing: border-box; }
     html, body { margin: 0; padding: 0; }
+
     body {
       font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       background: linear-gradient(180deg, #f7f9fc 0%, #eef2f8 100%);
@@ -81,9 +87,9 @@
     }
 
     button:hover { transform: translateY(-1px); }
-    button.primary { background: var(--primary); color: white; }
-    button.soft { background: #eef2f7; color: #243041; }
-    button.warn { background: var(--danger); color: #c92929; }
+    button.primary { background: #14213d; color: #fff; }
+    button.soft { background: var(--soft); color: #243041; }
+    button.warn { background: var(--danger); color: var(--danger-text); }
 
     .form-section {
       border-top: 1px solid #edf1f7;
@@ -99,9 +105,7 @@
       text-transform: uppercase;
     }
 
-    .field {
-      margin-bottom: 12px;
-    }
+    .field { margin-bottom: 12px; }
 
     .field label {
       display: block;
@@ -146,8 +150,8 @@
     .remove-btn {
       padding: 12px 14px;
       border-radius: 14px;
-      background: #fff1f1;
-      color: #d22;
+      background: var(--danger);
+      color: var(--danger-text);
       font-weight: 700;
     }
 
@@ -157,7 +161,7 @@
     }
 
     .receipt-sheet {
-      background: white;
+      background: #fff;
       width: 100%;
       max-width: 980px;
       min-height: 1280px;
@@ -191,22 +195,6 @@
       display: block;
     }
 
-    .invoice-label {
-      color: var(--primary);
-      font-size: 1rem;
-      font-weight: 800;
-      letter-spacing: 0.18em;
-      margin-bottom: 10px;
-    }
-
-    .invoice-number {
-      font-size: 2rem;
-      font-weight: 800;
-      line-height: 1.1;
-      margin: 0 0 26px;
-      word-break: break-word;
-    }
-
     .company-name {
       font-size: 1.35rem;
       font-weight: 800;
@@ -232,11 +220,26 @@
     .summary-card .label,
     .meta-title,
     .bill-title,
-    .table-head {
+    .table-head,
+    .invoice-label {
       color: #6a7282;
       text-transform: uppercase;
       letter-spacing: 0.06em;
       font-weight: 800;
+    }
+
+    .invoice-label {
+      margin-top: 20px;
+      margin-bottom: 8px;
+      font-size: 1rem;
+    }
+
+    .invoice-number {
+      font-size: 1rem;
+      font-weight: 400;
+      line-height: 1.55;
+      margin: 0;
+      word-break: break-word;
     }
 
     .due-amount {
@@ -254,9 +257,7 @@
       margin-bottom: 34px;
     }
 
-    .bill-box, .date-box {
-      min-height: 90px;
-    }
+    .bill-box, .date-box { min-height: 90px; }
 
     .bill-content, .date-content {
       margin-top: 10px;
@@ -346,22 +347,10 @@
         gap: 16px;
       }
 
-      .controls {
-        padding: 18px;
-      }
-
-      .controls h1 {
-        font-size: 1.6rem;
-      }
-
-      .controls p {
-        font-size: 0.95rem;
-      }
-
-      .receipt-wrap {
-        padding: 12px;
-      }
-
+      .controls { padding: 18px; }
+      .controls h1 { font-size: 1.6rem; }
+      .controls p { font-size: 0.95rem; }
+      .receipt-wrap { padding: 12px; }
       .receipt-sheet {
         padding: 22px;
         border-radius: 18px;
@@ -379,13 +368,8 @@
         border-radius: 20px;
       }
 
-      .button-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .button-grid button {
-        width: 100%;
-      }
+      .button-grid { grid-template-columns: 1fr; }
+      .button-grid button { width: 100%; }
 
       .form-section {
         padding-top: 16px;
@@ -419,9 +403,7 @@
         margin-top: 20px;
       }
 
-      .total-row {
-        padding: 12px 0;
-      }
+      .total-row { padding: 12px 0; }
 
       .logo-box img {
         max-width: 110px;
@@ -433,9 +415,7 @@
         font-size: 0.92rem;
       }
 
-      .due-amount {
-        font-size: 2rem;
-      }
+      .due-amount { font-size: 2rem; }
     }
 
     @media (max-width: 560px) {
@@ -449,17 +429,9 @@
         border-radius: 20px;
       }
 
-      .receipt-wrap {
-        padding: 8px;
-      }
-
-      .receipt-sheet {
-        padding: 16px;
-      }
-
-      .company-name {
-        font-size: 1.1rem;
-      }
+      .receipt-wrap { padding: 8px; }
+      .receipt-sheet { padding: 16px; }
+      .company-name { font-size: 1.1rem; }
 
       .company-address,
       .bill-content,
@@ -488,9 +460,7 @@
         width: 100%;
       }
 
-      thead {
-        display: none;
-      }
+      thead { display: none; }
 
       tbody tr {
         border: 1px solid #ebeff6;
@@ -512,7 +482,7 @@
     }
 
     @media print {
-      body { background: white; }
+      body { background: #fff; }
       .page { display: block; padding: 0; max-width: none; }
       .controls { display: none !important; }
       .panel { border: 0; box-shadow: none; background: transparent; }
@@ -534,7 +504,7 @@
   <div class="page">
     <aside class="panel controls">
       <h1>Receipt Generator</h1>
-      <p>GitHub-ready single HTML file. Edit the details, then print or save as PDF.</p>
+      <p>Edit the details, then print or save as PDF.</p>
 
       <div class="button-grid">
         <button class="primary" onclick="window.print()">Print / Save PDF</button>
@@ -570,8 +540,8 @@ BANDAR BARU SENTUL,
 51000 KUALA LUMPUR</textarea>
         </div>
         <div class="field">
-          <label>Logo URL or leave as embedded logo</label>
-          <input id="logoUrl" value="HEED_DEV-logo.png" placeholder="Optional image URL or GitHub image path" />
+          <label>Logo File</label>
+          <input id="logoUrl" value="HEED_DEV-logo.png" placeholder="Example: HEED_DEV-logo.png" />
         </div>
       </div>
 
@@ -628,8 +598,7 @@ ACCOUNT NUMBER: 564472639518</textarea>
       <section class="receipt-sheet" id="receiptSheet">
         <div class="receipt-top">
           <div class="branding">
-            <div class="logo-box"><img id="previewLogo" alt="Company logo" /></div>
-            
+            <div class="logo-box"><img id="previewLogo" alt="Company logo" src="HEED_DEV-logo.png" /></div>
             <div class="company-name" id="previewCompanyName">HEED DEVELOPMENT THERAPY</div>
             <div class="company-address" id="previewCompanyAddress">JALAN 1/48A,
 BANDAR BARU SENTUL,
@@ -641,8 +610,8 @@ BANDAR BARU SENTUL,
             <div class="due-amount" id="previewBalance">RM 0.00</div>
             <div class="meta-title">Date</div>
             <div class="date-content" id="previewDateTop">31 Mar 2026</div>
-            <div class="invoice-label" style="margin-top: 20px;">INVOICE</div>
-            <div class="invoice-number" id="previewInvoiceNumber" style="font-size: 1.5rem; margin: 8px 0 0;"># 2026/MAR/001</div>
+            <div class="invoice-label">Invoice</div>
+            <div class="invoice-number" id="previewInvoiceNumber"># 2026/MAR/001</div>
           </div>
         </div>
 
@@ -692,12 +661,12 @@ ACCOUNT NUMBER: 564472639518</p>
   </div>
 
   <script>
-    const EMBEDDED_LOGO = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAoHBwgHBgoICAkKCgkLDhgQDg0NDh0VFhEYIB0iIiAdHx8kKDQsJCYxJx8fLT0tMTU3Ojo6Iys/RD84QzQ5OjcBCgoKDg0OGhAQGi0fHyUtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLf/AABEIAWgB4AMBIgACEQEDEQH/xAAbAAABBQEBAAAAAAAAAAAAAAAEAQIDBQYAB//EAEQQAAIBAgMEBQQIBQcFAAAAAAECAAMRBBIhMQVBUQYTImFxgZEUIzKhsQcjQlLB0fAVYnKS4fEWJENzssLxFf/EABoBAQADAQEBAAAAAAAAAAAAAAABAgMEBQb/xAAwEQACAQMCAwYEBQQDAAAAAAAAAQIDEQQSITEFE0FRYYGRoQYicbHB0fAiQlLR4fDx/9oADAMBAAIRAxEAPwD7KREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAel+2tQ2zs7qVQm6tmr2+eC0V8mP3J5YzDvjH5Xkz8T4agVd3dS94bJv+0n5rM9y+JxjW1W4sWqK0N9vJ4s3JrV7I4M9hG4P1p0b4h9N7iW0F0q1VwNqLZQ1rDqW3n7fK8o7zv2QhQvJ5b0jYy9l0H9JzO8xwWm2Qd3oQ0VJ5v7S7+U8n5Q0+7f9H2q+6Gq0d6bq2W2t1h6k2aVJQm3mQ0iV1y8Z5Z8GJ8rZ3c8j8N9f5c2r1r7Q+0rU3u4Wq2l1l1J0c8X2zJm0uLh2jA5Vn1J7C6d7Nf8Ap0x1aVJk0q9s5Z4mL+Y6t1uQfQj2o7v7bQe8k0qM1f1bQ8Bq6mD5mO6d8a0s1q3Q9W6W0c9o1qkqkqQ2bZl0aVJY0mYq9n+I2dD9p9o9p1e1m7Q2lQm1dD1Y0aK2k3Xn1M2lQy1y9l5PqfQf1bO4x1X0o6t3qW2o1Wk2r1VqU7m1y3c3WmV2eJ1b0mNQ4w0n7fKz+J+Wf1dV7k9m9q1b1d1C3S1m3W2p9p0aSppKj2m5mS1eHk8H5W0b9v1d+Kq1XW7Vq7Q7YVtLq2aVJQm3b5bNQ2kq4M0mMZ3YfJwM1O9n7R9a7r7P7S1a2m1u5aW1j1Cq0lJQm3mY0mV1z8n5g8j6z1L0n8Y9V9o9j1s3bXbV7Q7S2m1WqU7aSUpCbZkNIlc8vGeWfBiZ/Veu3wz0u9r9m9p9r7TbW1u0q1u1aSUpKk9puZktXh5PB+VtG/b9Xfiq6+2O1v1W3u7W3t2m1u0q1KUpKkJtmQ0iVz8n5g8j6z1L0n8Y9V9o9j1s3bXbV7Q7S2m1WqU7aSUpCbZkNIlc8vGeWfBiZ/Veu3wz0u9r9m9p9r7TbW1u0q1u1aSUpKk9puZktXh5PB+VtG/b9Xfiq6+2O1v1W3u7W3t2m1u0q1KUpKkJtmQ0iVz8n5g8j6z1L0n8Y9V9o9j1s3bXbV7Q7S2m1WqU7aSUpCbZkNIlc8vGeWfBiZ/Veu3wz0u9r9m9p9r7TbW1u0q1u1aSUpKk9puZktXh5PB+VtG/b9Xfiq6+2O1v1W3u7W3t2m1u0q1KUpKkJtmQ0iVz8n5g8j6z1L0n8Y9V9o9j1s3bXbV7Q7S2m1WqU7aSUpCbZkNIlc8vGeWfBiZ/Veu3wz0u9r9m9p9r7TbW1u0q1u1aSUpKk9puZktXh5PB+VtG/b9Xfiq6+2O1v1W3u7W3t2m1u0q1KUpKkJtmQ0iVz8n5g8j6z1L0n8Y9V9o9j1s3bXbV7Q7S2m1WqU7aSUpCbZkNIlc8vGeWfBiZ/Veu3wz0u9r9m9p9r7TbW1u0q1u1aSUpKk9puZktXh5PB+VtG/b9Xfiq6+2O1v1W3u7W3t2m1u0q1KUpKkJtmQ0iVz8n5g8j6z1L0n8Y9V9o9j1s3bXbV7Q7S2m1WqU7aSUpCbZkNIlc8vGeWfBiZ/Veu3wz0u9r9m9p9r7TbW1u0q1u1aSUpKk9puZktXh5PB+VtG/b9Xfiq6+2O1v1W3u7W3t2m1u0q1KUpKkJtmQ0iVz8n5g8j6z1L0n8Y9V9o9j1s3bXbV7Q7S2m1WqU7aSUpCbZkNIlc8vGeWfBiZ/Veu3wz0u9r9m9p9r7TbW1u0q1u1aSUpKk9puZktXh5PB+VtG/b9Xfiq6+2O1v1W3u7W3t2m1u0q1KUpKkJtmQ0iVz8n5g8j6z1L0n8Y9V9o9j1s3bXbV7Q7S2m1WqU7aSUpCbZkNIlc8vGeWfBiZ/Veu3wz0u9r9m9p9r7TbW1u0q1u1aSUpKk9puZktXh5PB+VtG/b9Xfiq6+2O1v1W3u7W3t2m1u0q1KUpKkJtmQ0iVz8n5g8j6z1L0n8Y9V9o9j1s3bXbV7Q7S2m1WqU7aSUpCbZkNIlc8vGeWfBiZ/Veu3wz0u9r9m9p9r7TbW1u0q1u1aSUpKk9puZktXh5PB+VtG/b9Xfiq6+2O1v1W3u7W3t2m1u0q1KUpKkJtmQ0iVz8n5g8j6z1L0n8Y9V9o9j1s3bXbV7Q7S2m1WqU7aSUpCbZkNIlc8vGeWfBiZ/Veu3wz0u9r9m9p9r7TbW1u0q1u1aSUpKk9puZktXh5PB+VtG/b9Xfiq//2Q==";
+    const DEFAULT_LOGO = 'HEED_DEV-logo.png';
 
     const defaultData = {
       companyName: 'HEED DEVELOPMENT THERAPY',
       companyAddress: 'JALAN 1/48A,\nBANDAR BARU SENTUL,\n51000 KUALA LUMPUR',
-      logoUrl: '',
+      logoUrl: DEFAULT_LOGO,
       invoiceDate: '',
       invoiceNumber: '',
       billTo: 'SP Autism Behavioral Centre Sdn Bhd',
@@ -712,7 +681,7 @@ ACCOUNT NUMBER: 564472639518</p>
       ]
     };
 
-    const monthNames = ['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC'];
+    const monthNames = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
     const longMonthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
     function pad(n, size = 3) {
@@ -738,27 +707,38 @@ ACCOUNT NUMBER: 564472639518</p>
 
     function periodKeyFromDate(dateStr) {
       const [y, m] = dateStr.split('-').map(Number);
-      return `${y}-${pad(m, 2)}`;
+      return `${y}-${String(m).padStart(2, '0')}`;
     }
 
     function generateInvoiceNumber(dateStr, forceNext = false) {
       const [year, month] = dateStr.split('-').map(Number);
       const key = `receipt-counter-${periodKeyFromDate(dateStr)}`;
       let counter = Number(localStorage.getItem(key) || 0);
+
       if (counter === 0 || forceNext) {
         counter += 1;
         localStorage.setItem(key, String(counter));
       }
+
       return `# ${year}/${monthNames[month - 1]}/${pad(counter)}`;
     }
 
     function maybeRefreshInvoiceNumber() {
       const dateStr = document.getElementById('invoiceDate').value || todayISO();
       const invoiceInput = document.getElementById('invoiceNumber');
-      const expectedPrefix = `# ${dateStr.slice(0,4)}/${monthNames[Number(dateStr.slice(5,7)) - 1]}/`;
+      const expectedPrefix = `# ${dateStr.slice(0, 4)}/${monthNames[Number(dateStr.slice(5, 7)) - 1]}/`;
+
       if (!invoiceInput.value || !invoiceInput.value.startsWith(expectedPrefix)) {
         invoiceInput.value = generateInvoiceNumber(dateStr);
       }
+    }
+
+    function escapeHtmlAttr(value) {
+      return String(value)
+        .replace(/&/g, '&amp;')
+        .replace(/"/g, '&quot;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;');
     }
 
     function buildItemRow(item = { description: '', quantity: 1, rate: 0 }) {
@@ -773,16 +753,19 @@ ACCOUNT NUMBER: 564472639518</p>
           <button class="remove-btn" type="button">Remove</button>
         </div>
       `;
-      row.querySelectorAll('input').forEach(el => el.addEventListener('input', () => {
+
+      row.querySelectorAll('input').forEach((el) => el.addEventListener('input', () => {
         const qty = Number(row.querySelector('.item-qty').value || 0);
         const rate = Number(row.querySelector('.item-rate').value || 0);
         row.querySelector('.item-amount').value = (qty * rate).toFixed(2);
         updatePreview();
       }));
+
       row.querySelector('.remove-btn').addEventListener('click', () => {
         row.remove();
         updatePreview();
       });
+
       return row;
     }
 
@@ -792,19 +775,17 @@ ACCOUNT NUMBER: 564472639518</p>
     }
 
     function getItemsFromEditor() {
-      return [...document.querySelectorAll('.item-row')].map(row => ({
-        description: row.querySelector('.item-desc').value.trim(),
-        quantity: Number(row.querySelector('.item-qty').value || 0),
-        rate: Number(row.querySelector('.item-rate').value || 0)
-      })).filter(item => item.description || item.quantity || item.rate);
+      return [...document.querySelectorAll('.item-row')]
+        .map((row) => ({
+          description: row.querySelector('.item-desc').value.trim(),
+          quantity: Number(row.querySelector('.item-qty').value || 0),
+          rate: Number(row.querySelector('.item-rate').value || 0)
+        }))
+        .filter((item) => item.description || item.quantity || item.rate);
     }
 
-    function escapeHtmlAttr(value) {
-      return String(value)
-        .replace(/&/g, '&amp;')
-        .replace(/"/g, '&quot;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;');
+    function saveDraftState() {
+      localStorage.setItem('receipt-generator-draft', JSON.stringify(collectFormData()));
     }
 
     function updatePreview() {
@@ -815,7 +796,7 @@ ACCOUNT NUMBER: 564472639518</p>
       const invoiceNumber = document.getElementById('invoiceNumber').value;
       const terms = document.getElementById('terms').value;
       const bankingNotes = document.getElementById('bankingNotes').value;
-      const logoUrl = document.getElementById('logoUrl').value.trim();
+      const logoUrl = document.getElementById('logoUrl').value.trim() || DEFAULT_LOGO;
       const taxRate = Number(document.getElementById('taxRate').value || 0);
       const items = getItemsFromEditor();
 
@@ -830,15 +811,17 @@ ACCOUNT NUMBER: 564472639518</p>
       document.getElementById('previewTaxLabel').textContent = taxRate.toFixed(0);
 
       const logo = document.getElementById('previewLogo');
-      logo.src = document.getElementById('logoUrl').value.trim() || "HEED_DEV-logo.png";
-      logo.onerror = function () {
-        this.style.display = "none";
+      logo.style.display = 'block';
+      logo.src = logoUrl;
+      logo.onerror = function onLogoError() {
+        this.style.display = 'none';
       };
 
       const tbody = document.getElementById('previewItems');
       tbody.innerHTML = '';
       let subtotal = 0;
-      items.forEach(item => {
+
+      items.forEach((item) => {
         const amount = item.quantity * item.rate;
         subtotal += amount;
         const tr = document.createElement('tr');
@@ -881,7 +864,7 @@ ACCOUNT NUMBER: 564472639518</p>
     function applyData(data) {
       document.getElementById('companyName').value = data.companyName ?? defaultData.companyName;
       document.getElementById('companyAddress').value = data.companyAddress ?? defaultData.companyAddress;
-      document.getElementById('logoUrl').value = data.logoUrl ?? '';
+      document.getElementById('logoUrl').value = data.logoUrl || defaultData.logoUrl;
       document.getElementById('invoiceDate').value = data.invoiceDate || todayISO();
       document.getElementById('invoiceNumber').value = data.invoiceNumber || generateInvoiceNumber(document.getElementById('invoiceDate').value);
       document.getElementById('billTo').value = data.billTo ?? '';
@@ -892,12 +875,8 @@ ACCOUNT NUMBER: 564472639518</p>
 
       const editor = document.getElementById('itemsEditor');
       editor.innerHTML = '';
-      (data.items?.length ? data.items : defaultData.items).forEach(item => editor.appendChild(buildItemRow(item)));
+      (data.items?.length ? data.items : defaultData.items).forEach((item) => editor.appendChild(buildItemRow(item)));
       updatePreview();
-    }
-
-    function saveDraftState() {
-      localStorage.setItem('receipt-generator-draft', JSON.stringify(collectFormData()));
     }
 
     function saveLocally() {
@@ -935,19 +914,23 @@ ACCOUNT NUMBER: 564472639518</p>
       updatePreview();
     });
 
-    ['companyName','companyAddress','logoUrl','invoiceNumber','billTo','currency','taxRate','terms','bankingNotes']
-      .forEach(id => document.getElementById(id).addEventListener('input', updatePreview));
+    ['companyName', 'companyAddress', 'logoUrl', 'invoiceNumber', 'billTo', 'currency', 'taxRate', 'terms', 'bankingNotes']
+      .forEach((id) => document.getElementById(id).addEventListener('input', updatePreview));
 
     (function init() {
       const saved = localStorage.getItem('receipt-generator-draft');
+
       if (saved) {
         try {
           applyData(JSON.parse(saved));
           maybeRefreshInvoiceNumber();
           updatePreview();
           return;
-        } catch (e) {}
+        } catch (error) {
+          console.warn('Failed to load saved draft.', error);
+        }
       }
+
       const fresh = structuredClone(defaultData);
       fresh.invoiceDate = todayISO();
       fresh.invoiceNumber = generateInvoiceNumber(fresh.invoiceDate);
