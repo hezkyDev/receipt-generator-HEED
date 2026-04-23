@@ -571,7 +571,7 @@ BANDAR BARU SENTUL,
         </div>
         <div class="field">
           <label>Logo URL or leave as embedded logo</label>
-          <input id="logoUrl" placeholder="Optional image URL or GitHub image path" />
+          <input id="logoUrl" value="HEED_DEV-logo.png" placeholder="Optional image URL or GitHub image path" />
         </div>
       </div>
 
@@ -830,7 +830,10 @@ ACCOUNT NUMBER: 564472639518</p>
       document.getElementById('previewTaxLabel').textContent = taxRate.toFixed(0);
 
       const logo = document.getElementById('previewLogo');
-      logo.src = logoUrl || EMBEDDED_LOGO;
+      logo.src = document.getElementById('logoUrl').value.trim() || "HEED_DEV-logo.png";
+      logo.onerror = function () {
+        this.style.display = "none";
+      };
 
       const tbody = document.getElementById('previewItems');
       tbody.innerHTML = '';
