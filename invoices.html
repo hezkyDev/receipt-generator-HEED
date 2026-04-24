@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Invoices | HEED OT System</title>
+  <meta name="theme-color" content="#ffffff" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-title" content="HEED OT" />
+  <link rel="icon" type="image/png" href="HEED_DEV-logo.png" />
+  <link rel="apple-touch-icon" href="HEED_DEV-logo.png" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body>
+  <div class="page system-page">
+    <aside class="panel sidebar">
+      <div class="brand-block">
+        <img src="HEED_DEV-logo.png" alt="HEED logo" class="brand-logo" />
+        <h1>HEED OT System</h1>
+        <p>Build invoices using session records.</p>
+      </div>
+      <nav class="side-nav">
+        <a href="index.html" class="nav-link">Dashboard</a>
+<a href="clients.html" class="nav-link">Clients</a>
+<a href="sessions.html" class="nav-link">Sessions</a>
+<a href="invoices.html" class="nav-link active">Invoices</a>
+<a href="receipt.html" class="nav-link">Receipts</a>
+<a href="payments.html" class="nav-link">Payment Tracker</a>
+      </nav>
+    </aside>
+    <main class="panel main-panel">
+      
+<section class="section-header">
+  <h2>Invoices</h2>
+  <p>Create invoices from saved sessions.</p>
+</section>
+
+<section class="content-grid">
+  <div class="panel inner-panel">
+    <h3>Create Invoice</h3>
+    <div class="field"><label>Client</label><select id="invoiceClient"></select></div>
+    <div class="two-col">
+      <div class="field"><label>Invoice Date</label><input id="invoiceDate" type="date" /></div>
+      <div class="field"><label>From</label><input id="invoiceFrom" type="date" /></div>
+    </div>
+    <div class="field"><label>To</label><input id="invoiceTo" type="date" /></div>
+    <div class="toolbar">
+      <button class="soft" id="loadSessionsBtn" type="button">Load Sessions</button>
+      <button class="primary" id="createInvoiceBtn" type="button">Create Invoice</button>
+    </div>
+    <div id="invoiceSessionList" class="card-list">
+      <div class="empty-state">Select client and date range to load sessions.</div>
+    </div>
+  </div>
+
+  <div class="panel inner-panel">
+    <div class="list-header">
+      <h3>Invoice List</h3>
+    </div>
+    <div id="invoiceList" class="card-list"></div>
+  </div>
+</section>
+
+    </main>
+  </div>
+  <script src="assets/js/app.js"></script>
+  <script src="assets/js/invoices.js"></script>
+</body>
+</html>

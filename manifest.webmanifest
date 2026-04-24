@@ -1,7 +1,7 @@
 {
-  "name": "HEED Development Therapy Receipt Generator",
-  "short_name": "HEED Receipt",
-  "start_url": "./",
+  "name": "HEED Development Therapy OT System",
+  "short_name": "HEED OT",
+  "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#ffffff",

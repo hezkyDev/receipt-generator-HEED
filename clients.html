@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Clients | HEED OT System</title>
+  <meta name="theme-color" content="#ffffff" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-title" content="HEED OT" />
+  <link rel="icon" type="image/png" href="HEED_DEV-logo.png" />
+  <link rel="apple-touch-icon" href="HEED_DEV-logo.png" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body>
+  <div class="page system-page">
+    <aside class="panel sidebar">
+      <div class="brand-block">
+        <img src="HEED_DEV-logo.png" alt="HEED logo" class="brand-logo" />
+        <h1>HEED OT System</h1>
+        <p>Manage client records for Occupational Therapy freelance work.</p>
+      </div>
+      <nav class="side-nav">
+        <a href="index.html" class="nav-link">Dashboard</a>
+<a href="clients.html" class="nav-link active">Clients</a>
+<a href="sessions.html" class="nav-link">Sessions</a>
+<a href="invoices.html" class="nav-link">Invoices</a>
+<a href="receipt.html" class="nav-link">Receipts</a>
+<a href="payments.html" class="nav-link">Payment Tracker</a>
+      </nav>
+    </aside>
+    <main class="panel main-panel">
+      
+<section class="section-header">
+  <h2>Clients</h2>
+  <p>Add and manage your client list.</p>
+</section>
+
+<section class="content-grid">
+  <div class="panel inner-panel">
+    <h3>Add Client</h3>
+    <div class="field"><label>Client Name</label><input id="clientName" type="text" /></div>
+    <div class="field"><label>Parent / Guardian</label><input id="clientGuardian" type="text" /></div>
+    <div class="field"><label>Contact Number</label><input id="clientPhone" type="text" /></div>
+    <div class="field"><label>Email</label><input id="clientEmail" type="email" /></div>
+    <div class="field"><label>Default Rate (RM)</label><input id="clientRate" type="number" min="0" step="0.01" /></div>
+    <div class="field"><label>Notes</label><textarea id="clientNotes"></textarea></div>
+    <button class="primary full-btn" id="saveClientBtn">Save Client</button>
+  </div>
+
+  <div class="panel inner-panel">
+    <div class="list-header">
+      <h3>Client List</h3>
+      <button class="soft" id="clearClientsBtn">Clear All</button>
+    </div>
+    <div id="clientList" class="card-list"></div>
+  </div>
+</section>
+
+    </main>
+  </div>
+  <script src="assets/js/app.js"></script>
+  <script src="assets/js/clients.js"></script>
+</body>
+</html>

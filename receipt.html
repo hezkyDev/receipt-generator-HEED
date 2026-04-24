@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>HEED OT System</title>
+  <title>Receipts | HEED OT System</title>
   <meta name="theme-color" content="#ffffff" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-title" content="HEED OT" />
@@ -18,53 +18,41 @@
       <div class="brand-block">
         <img src="HEED_DEV-logo.png" alt="HEED logo" class="brand-logo" />
         <h1>HEED OT System</h1>
-        <p>Freelancer admin tool for OT clients, sessions, billing, and payments.</p>
+        <p>Preview and print invoice receipts.</p>
       </div>
       <nav class="side-nav">
-        <a href="index.html" class="nav-link active">Dashboard</a>
+        <a href="index.html" class="nav-link">Dashboard</a>
 <a href="clients.html" class="nav-link">Clients</a>
 <a href="sessions.html" class="nav-link">Sessions</a>
 <a href="invoices.html" class="nav-link">Invoices</a>
-<a href="receipt.html" class="nav-link">Receipts</a>
+<a href="receipt.html" class="nav-link active">Receipts</a>
 <a href="payments.html" class="nav-link">Payment Tracker</a>
       </nav>
     </aside>
     <main class="panel main-panel">
       
-<section class="hero-card">
-  <h2>Version 2 Admin System</h2>
-  <p>Manage clients, sessions, invoices, receipts, and payment tracking in one place.</p>
+<section class="section-header no-print">
+  <h2>Receipts / Invoice Preview</h2>
+  <p>Open a saved invoice and print or save as PDF.</p>
 </section>
 
-<section class="dashboard-grid">
-  <div class="info-card">
-    <h3>Total Clients</h3>
-    <p id="dashboardClientCount">0</p>
-  </div>
-  <div class="info-card">
-    <h3>Total Sessions</h3>
-    <p id="dashboardSessionCount">0</p>
-  </div>
-  <div class="info-card">
-    <h3>This Month Sessions</h3>
-    <p id="dashboardMonthSessionCount">0</p>
+<section class="panel inner-panel no-print" style="margin-bottom: 20px;">
+  <div class="list-header">
+    <h3>Select Invoice</h3>
+    <div class="toolbar">
+      <select id="receiptInvoiceSelect"></select>
+      <button class="primary" onclick="window.print()">Print / Save PDF</button>
+    </div>
   </div>
 </section>
 
-<section class="dashboard-grid-2">
-  <div class="info-card">
-    <h3>Total Invoices</h3>
-    <p id="dashboardInvoiceCount">0</p>
-  </div>
-  <div class="info-card">
-    <h3>Unpaid Invoices</h3>
-    <p id="dashboardUnpaidCount">0</p>
-  </div>
+<section class="receipt-sheet" id="receiptSheet">
+  <div class="empty-state">Select an invoice to preview receipt/invoice.</div>
 </section>
 
     </main>
   </div>
   <script src="assets/js/app.js"></script>
-  
+  <script src="assets/js/receipt.js"></script>
 </body>
 </html>

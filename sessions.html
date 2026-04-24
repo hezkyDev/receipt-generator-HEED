@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sessions | HEED OT System</title>
+  <meta name="theme-color" content="#ffffff" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-title" content="HEED OT" />
+  <link rel="icon" type="image/png" href="HEED_DEV-logo.png" />
+  <link rel="apple-touch-icon" href="HEED_DEV-logo.png" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body>
+  <div class="page system-page">
+    <aside class="panel sidebar">
+      <div class="brand-block">
+        <img src="HEED_DEV-logo.png" alt="HEED logo" class="brand-logo" />
+        <h1>HEED OT System</h1>
+        <p>Track session details for each client.</p>
+      </div>
+      <nav class="side-nav">
+        <a href="index.html" class="nav-link">Dashboard</a>
+<a href="clients.html" class="nav-link">Clients</a>
+<a href="sessions.html" class="nav-link active">Sessions</a>
+<a href="invoices.html" class="nav-link">Invoices</a>
+<a href="receipt.html" class="nav-link">Receipts</a>
+<a href="payments.html" class="nav-link">Payment Tracker</a>
+      </nav>
+    </aside>
+    <main class="panel main-panel">
+      
+<section class="section-header">
+  <h2>Sessions</h2>
+  <p>Add and manage Occupational Therapy session records.</p>
+</section>
+
+<section class="content-grid">
+  <div class="panel inner-panel">
+    <h3>Add Session</h3>
+    <div class="field"><label>Client</label><select id="sessionClient"></select></div>
+    <div class="two-col">
+      <div class="field"><label>Session Date</label><input id="sessionDate" type="date" /></div>
+      <div class="field"><label>Status</label>
+        <select id="sessionStatus">
+          <option value="Completed">Completed</option>
+          <option value="Pending Payment">Pending Payment</option>
+          <option value="Cancelled">Cancelled</option>
+        </select>
+      </div>
+    </div>
+    <div class="two-col">
+      <div class="field"><label>Session Type</label><input id="sessionType" type="text" placeholder="Example: OT Session" /></div>
+      <div class="field"><label>Duration</label><input id="sessionDuration" type="text" placeholder="Example: 1 hour" /></div>
+    </div>
+    <div class="field"><label>Rate (RM)</label><input id="sessionRate" type="number" min="0" step="0.01" /></div>
+    <div class="field"><label>Remarks</label><textarea id="sessionRemarks"></textarea></div>
+    <button class="primary full-btn" id="saveSessionBtn">Save Session</button>
+  </div>
+
+  <div class="panel inner-panel">
+    <div class="list-header">
+      <h3>Session List</h3>
+      <button class="soft" id="clearSessionsBtn">Clear All</button>
+    </div>
+    <div id="sessionList" class="card-list"></div>
+  </div>
+</section>
+
+    </main>
+  </div>
+  <script src="assets/js/app.js"></script>
+  <script src="assets/js/sessions.js"></script>
+</body>
+</html>
